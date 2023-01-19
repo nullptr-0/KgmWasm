@@ -1,0 +1,24 @@
+{
+  "name": "@xhacker/kgmwasm",
+  "version": "1.0.0",
+  "description": "WASM for Kgm Encryption & Decryption",
+  "main": "KgmWasmBundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xhacker-zzz/KgmWasm.git"
+  },
+  "keywords": [
+    "unlock-music",
+    "kgm",
+    "WASM"
+  ],
+  "author": "xhacker-zzz",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/xhacker-zzz/KgmWasm/issues"
+  },
+  "homepage": "https://github.com/xhacker-zzz/KgmWasm#readme"
+}
