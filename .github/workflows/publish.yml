@@ -1,0 +1,24 @@
+name: "Publish"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Autobuild
+      run: bash build-wasm
+
+    - name: Publish Package
+      run: cd npm; npm publish --access public
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
