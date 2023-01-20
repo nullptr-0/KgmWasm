@@ -25,7 +25,10 @@ const decrypted= (await DecryptKgmWasm(cipherText, extension)).data;
 
 ### 自行构建
 
-在 Linux 环境下执行 `./build-wasm` 即可构建。构建结果将位于此项目根目录的npm子目录中。
+#### Linux
+在此项目根目录中执行 `./build-wasm` 即可构建。构建结果将位于此项目根目录的npm子目录中。
+#### Windows
+在此项目根目录中执行 `build-wasm.cmd` 即可构建。构建结果将位于此项目根目录的npm子目录中。
 
 [音乐解锁Web]: https://git.unlock-music.dev/um/web
 [音乐解锁]: https://unlock-music.dev/
