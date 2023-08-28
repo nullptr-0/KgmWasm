@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xhacker-zzz/KgmWasm.git"
+    "url": "git+https://github.com/nullptr-0/KgmWasm.git"
   },
   "keywords": [
     "unlock-music",
@@ -18,7 +18,7 @@
   "author": "xhacker-zzz",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/xhacker-zzz/KgmWasm/issues"
+    "url": "https://github.com/nullptr-0/KgmWasm/issues"
   },
-  "homepage": "https://github.com/xhacker-zzz/KgmWasm#readme"
+  "homepage": "https://github.com/nullptr-0/KgmWasm#readme"
 }
