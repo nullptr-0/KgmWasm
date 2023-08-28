@@ -2,7 +2,7 @@ import { KgmCrypto } from '@xhacker/kgmwasm/KgmWasmBundle';
 import KgmCryptoModule from '@xhacker/kgmwasm/KgmWasmBundle';
 import { MergeUint8Array } from '@/utils/MergeUint8Array';
 
-// 每次处理 2M 的数据
+// 每次可以处理 2M 的数据
 const DECRYPTION_BUF_SIZE = 2 *1024 * 1024;
 
 export interface KGMDecryptionResult {
@@ -36,12 +36,12 @@ export async function DecryptKgmWasm(kgmBlob: ArrayBuffer, ext: string): Promise
 
   // 申请内存块，并文件末端数据到 WASM 的内存堆
   let kgmBuf = new Uint8Array(kgmBlob);
-  const pQmcBuf = KgmCryptoObj._malloc(DECRYPTION_BUF_SIZE);
-  KgmCryptoObj.writeArrayToMemory(kgmBuf.slice(0, DECRYPTION_BUF_SIZE), pQmcBuf);
+  const pKgmBuf = KgmCryptoObj._malloc(DECRYPTION_BUF_SIZE);
+  const preDecDataSize = Math.min(DECRYPTION_BUF_SIZE, kgmBlob.byteLength); // 初始化缓冲区大小
+  KgmCryptoObj.writeArrayToMemory(kgmBuf.slice(0, preDecDataSize), pKgmBuf);
 
   // 进行解密初始化
-  const headerSize = KgmCryptoObj.preDec(pQmcBuf, DECRYPTION_BUF_SIZE, ext);
-  console.log(headerSize);
+  const headerSize = KgmCryptoObj.preDec(pKgmBuf, preDecDataSize, ext);
   kgmBuf = kgmBuf.slice(headerSize);
 
   const decryptedParts = [];
@@ -52,14 +52,14 @@ export async function DecryptKgmWasm(kgmBlob: ArrayBuffer, ext: string): Promise
 
     // 解密一些片段
     const blockData = new Uint8Array(kgmBuf.slice(offset, offset + blockSize));
-    KgmCryptoObj.writeArrayToMemory(blockData, pQmcBuf);
-    KgmCryptoObj.decBlob(pQmcBuf, blockSize, offset);
-    decryptedParts.push(KgmCryptoObj.HEAPU8.slice(pQmcBuf, pQmcBuf + blockSize));
+    KgmCryptoObj.writeArrayToMemory(blockData, pKgmBuf);
+    KgmCryptoObj.decBlob(pKgmBuf, blockSize, offset);
+    decryptedParts.push(KgmCryptoObj.HEAPU8.slice(pKgmBuf, pKgmBuf + blockSize));
 
     offset += blockSize;
     bytesToDecrypt -= blockSize;
   }
-  KgmCryptoObj._free(pQmcBuf);
+  KgmCryptoObj._free(pKgmBuf);
 
   result.data = MergeUint8Array(decryptedParts);
   result.success = true;
