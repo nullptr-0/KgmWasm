@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# content from build
+npm/LICENSE.txt
+npm/QmcWasm.wasm
+npm/QmcLegacy.js
+npm/QmcWasm.js
+npm/QmcWasmBundle.js
+build/
