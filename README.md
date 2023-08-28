@@ -25,6 +25,8 @@ const decrypted= (await DecryptKgmWasm(cipherText, extension)).data;
 
 ### 自行构建
 
+#### 依赖
+要自行构建此项目，请确保已经安装[Git]与[CMake]且其路径已经添加到 `PATH`
 #### Linux
 在此项目根目录中执行 `./build-wasm` 即可构建。构建结果将位于此项目根目录的npm子目录中。
 #### Windows
@@ -37,3 +39,5 @@ const decrypted= (await DecryptKgmWasm(cipherText, extension)).data;
 [授权协议]: https://github.com/nullptr-0/KgmWasm/blob/master/LICENSE.txt
 [kgm_wasm.ts]: https://github.com/nullptr-0/KgmWasm/blob/master/kgm_wasm.ts
 [GitHub Actions]: https://github.com/nullptr-0/KgmWasm/actions
+[Git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[CMake]: https://cmake.org/download/
